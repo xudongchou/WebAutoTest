@@ -134,6 +134,7 @@ class WebUiMethod:
         str1 = platform.platform()
         op=str1.split("-")[0]
         Logger.logger.info("关闭浏览器驱动并关闭标签页")
+        """
         sleep(5)
         if op=="Windows":
             if driver.name=="firefox":
@@ -159,6 +160,7 @@ class WebUiMethod:
             else:
                 Logger.logger.info("您的浏览器不适合在mac系统")
             sleep(3)
+        """
         Logger.logger.info("关闭浏览器")
     def navigate(driver,url):
        driver.get(url)
