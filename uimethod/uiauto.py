@@ -1,6 +1,13 @@
 """
+@project:code
+@author:lenovo
+@file:logcat.py
+@ide:PyCharm
+@time:2020/8/27 15:35
+@month:八月
 封装web自动化的常用的元素使用方法，本类依赖于 driverselect的SelectDriver类
 使用时请引入此类
+
 """
 import os
 from datetime import datetime
@@ -14,6 +21,9 @@ from selenium.common.exceptions import JavascriptException
 from uimethod.helpers import Logger
 from uimethod.driverselect import SelectDriver
 import platform
+import socket
+from urllib3.exceptions import MaxRetryError,NewConnectionError
+from selenium.webdriver.remote.command import Command
 class WebUiMethod:
     def webEdit(driver,xpath,inputstring):
         try:
@@ -30,9 +40,23 @@ class WebUiMethod:
             webButton=driver.find_element_by_xpath(xpath)
             return webButton
         except NoSuchElementException :
-            Logger.logger.info("页面上没有按钮")
+            Logger.logger.info("页面上使用xpath没有定位到按钮")
+            # try:
+            #     webButton=driver.find_element_by_class_name(xpath)
+            #     return webButton
+            # except NoSuchElementException:
+            #     Logger.logger.info("页面上使用classname没有定位到按钮")
+            #     try:
+
+
+
         except ElementNotVisibleException :
             Logger.logger.info("该页面上有多个按钮")
+
+
+
+
+
 
     def webLink(driver,xpath):
         try:
@@ -190,3 +214,9 @@ class WebUiMethod:
              Logger.logger.info("------截图成功,位置在ScreenShot目录------")
          else:
              Logger.logger.info("------截图失败,请检查程序------")
+    def get_driver_status(driver):
+        try:
+           driver.execute(Command.STATUS)
+           return "Alive"
+        except(socket.error,MaxRetryError,NewConnectionError):
+            return "Dead"
