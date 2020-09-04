@@ -13,6 +13,8 @@ import os
 def send_email():
     report_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "\\reports"
     report_name = '自动化报告.html'
+    repfile = report_dir + report_name
+    report_file = eval(repr(repfile).replace('\\','/'))
     report_file = report_dir + report_name
     report_list = os.listdir(report_dir)
     print(report_list)

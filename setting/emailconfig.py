@@ -7,7 +7,7 @@
 @month:八月
 
 """
-To_Users=['xudongzhou2@creditease.cn']
-Username = 'xudongzhou2@creditease.cn'
-Passwd = 'Zxd325460'
-Email_Host = 'outlook-bj.creditease.cn'
+To_Users=['']
+Username = ''
+Passwd = ''
+Email_Host = ''
